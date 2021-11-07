@@ -26,21 +26,21 @@ for (let huesped = 1; huesped <=2; huesped++){
 }
     alert("Datos ingresados correctamente");*/
 
-    const multiplicar = (a, b) => {
+/*const multiplicar = (a, b) => {
     return a * b;
 }
 
-const cobrar = (importe)=>{
-    let pago=0;
-    while (importe > 0 && pago !=importe){
-    pago= Number (prompt (`Ingrese ${importe}`))
+const cobrar = (importe) => {
+    let pago = 0;
+    while (importe > 0 && pago != importe) {
+        pago = Number(prompt(`Ingrese ${importe}`))
     }
     alert("Muchas gracias por confiar su descanso a El Remanso");
 }
 
 function confirmarReserva(mensaje, precio) {
     alert(`Muchas gracias por elegirnos, ${mensaje} El total es ${precio}`);
-    cobrar (precio);
+    cobrar(precio);
 }
 
 function hacerReserva(reserva, cantidad) {
@@ -76,7 +76,7 @@ function hacerReserva(reserva, cantidad) {
             mensaje = "No hay disponibilidad";
             break;
     }
-    confirmarReserva(mensaje,precio);
+    confirmarReserva(mensaje, precio);
 }
 
 const pedirReserva = () => {
@@ -86,11 +86,38 @@ const pedirReserva = () => {
     2- Habitación Doble, 3500
     3- Cabaña 4 personas, 5000
     4- Cabaña 6 personas, 7000
-    5- Cabaña 6 personas, 8500
+    5- Cabaña 8 personas, 8500
     6- Cabaña 10 personas, 10000`));
     const cantidad = Number(prompt("Ingrese cantidad de habitaciones"));
     hacerReserva(reserva, cantidad);
 }
 
 
-pedirReserva();
+pedirReserva();*/
+
+
+class Reserva {
+    constructor(categoriaSuite, suiteDisponible, cantidadReservada) {
+        this.categoriaSuite = categoriaSuite;
+        this.suiteDisponible = suiteDisponible;
+        this.cantidad = cantidadReservada;
+    }
+
+    controlDisponibilidad() {
+        if (this.cantidad > this.suiteDisponible) {
+            alert("No hay disponibilidad")
+        } else if (this.cantidad < this.suiteDisponible && this.cantidad > 0) {
+            this.suiteDisponible = this.suiteDisponible - this.cantidad
+            alert("la cantidad ingresada es: " + this.cantidad + "La disponibilidad es de: " + this.suiteDisponible);
+            console.log();
+        } else {
+            alert("El valor ingresado es incorrecto")
+        }
+
+    }
+}
+
+let reservaUsuario = Number(prompt("Ingrese cantidad de habitaciones a reservar"));
+const objeto1 = new Reserva("luxurySuites", 6, reservaUsuario);
+
+objeto1.controlDisponibilidad()
