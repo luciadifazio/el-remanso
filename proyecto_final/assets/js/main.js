@@ -1,4 +1,4 @@
-/*const nombre = prompt("Ingrese su nombre");
+const nombre = prompt("Ingrese su nombre");
 
 const mensaje = "Bienvenido " + nombre + " a El Remanso";
 
@@ -7,7 +7,7 @@ console.log(mensaje);
 
 
 
-let habitacion = prompt("qué habitación preferís?");
+/*let habitacion = prompt("qué habitación preferís?");
 let simple = 2000
 let doble = 3500
 
@@ -97,27 +97,64 @@ pedirReserva();*/
 
 
 class Reserva {
-    constructor(categoriaSuite, suiteDisponible, cantidadReservada) {
-        this.categoriaSuite = categoriaSuite;
-        this.suiteDisponible = suiteDisponible;
-        this.cantidad = cantidadReservada;
-    }
-
-    controlDisponibilidad() {
-        if (this.cantidad > this.suiteDisponible) {
-            alert("No hay disponibilidad")
-        } else if (this.cantidad < this.suiteDisponible && this.cantidad > 0) {
-            this.suiteDisponible = this.suiteDisponible - this.cantidad
-            alert("la cantidad ingresada es: " + this.cantidad + "La disponibilidad es de: " + this.suiteDisponible);
-            console.log();
-        } else {
-            alert("El valor ingresado es incorrecto")
-        }
-
+    constructor(categoria, nombre, precio) {
+        this.categoria = categoria;
+        this.nombre = nombre;
+        this.precio = Number(precio);
     }
 }
 
-let reservaUsuario = Number(prompt("Ingrese cantidad de habitaciones a reservar"));
-const objeto1 = new Reserva("luxurySuites", 6, reservaUsuario);
+const reserva1=new Reserva("suiteLuxury", "Frida Khalo", 4000);
+const reserva2= new Reserva("suiteLuxury", "Diego Rivera", 5000);
+const reserva3= new Reserva("suiteSuperior", "Beth Hart", 3000);
+const reserva4= new Reserva("suiteSuperior", "Aretha Franklin", 3500);
+const reserva5= new Reserva("suiteSuperior", "Freddy Mercury", 3500);
 
-objeto1.controlDisponibilidad()
+const reservas = [reserva1, reserva2, reserva3, reserva4, reserva5];
+
+console.log(reservas);
+
+const verSuites = () => {
+    let texto = "";
+    for (const Reserva of reservas) {
+        texto += `Reserva: ${Reserva.categoria}\nNombre:${Reserva.nombre}\nPrecio:$${Reserva.precio}\n\n`
+    }
+    return texto;
+}
+
+const reservarSuites = () => {
+    const reservaUsuario = prompt(`¿Qué Suite desea reservar?\n\n;${verSuites()}`);
+
+    const reservaEncontrada = reservas.find (reserva => reserva.nombre.toLowerCase() ===reservaUsuario.toLowerCase().trim());
+
+    if (reservaEncontrada) {
+        alert(`Reservaste ${reservaEncontrada.nombre} a $${reservaEncontrada.precio}`);
+    } else {
+        alert("Suite no encontrada");
+    }
+}
+
+let opcion;
+
+do {
+    opcion = Number(prompt(`Ingrese una opción:
+        1- Ver Suites
+        2- Reservar Suites
+        3- Salir
+    `));
+    switch (opcion) {
+        case 1:
+            const valorRecibido = verSuites();
+            alert(valorRecibido);
+            break;
+        case 2:
+            reservarSuites();
+            break;
+        case 3:
+            alert("Gracias por su visita");
+            break;
+        default:
+            alert("Opción incorrecta");
+            break;
+    }
+} while (opcion !== 3);
