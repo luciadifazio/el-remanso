@@ -40,7 +40,7 @@ header{padding:20px 0px;}
 #logo{padding:0px;}
 input[type=checkbox] {position: absolute; top: -9999px; left: -9999px; background:none;}
 input[type=checkbox]:fous{background:none;}
-label {float:right; padding:8px 0px; display:inline-block; cursor:pointer; }
+label {float: none; padding:8px 0px; display:inline-block; cursor:pointer; }
 input[type=checkbox]:checked ~ nav {display:block;}
 
 nav{display:none; position:absolute; right:0px; top:53px; background-color:#002e5b; padding:0px; z-index:99;}
